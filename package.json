@@ -1,23 +1,30 @@
 {
   "name": "portfolio-api",
   "version": "1.0.0",
-  "description": "Simple Postgres API for the Portfolio App",
+  "description": "",
   "main": "app.js",
+  "devDependencies": {
+      "body-parser": "*",
+      "cors": "^2.8.5",
+      "express": "*",
+      "pg": "^7.7.1"
+    },
   "scripts": {
-    "start": "node app.js",
-    "test": "npm test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "engines": {
-    "node": "8.10.0",
-    "npm": "6.5.0"
+    "npm": "6.5.0",
+    "node": "8.10.0"
   },
-
-  "author": "Calum",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calumchater/Portfolio-API.git"
+  },
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "pg": "^7.7.1"
-  }
+  "bugs": {
+    "url": "https://github.com/calumchater/Portfolio-API/issues"
+  },
+  "homepage": "https://github.com/calumchater/Portfolio-API#readme"
 }
