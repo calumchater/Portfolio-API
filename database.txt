@@ -1,0 +1,113 @@
+DROP TABLE IF EXISTS users,
+                     companies,
+                     favourites,
+                     stocks;
+
+
+CREATE TABLE users (
+    username     VARCHAR(100)             NOT NULL,
+    PRIMARY KEY (username)
+);
+
+CREATE TABLE companies (
+    company_id INT NOT NULL,
+    company_name   VARCHAR(40)     NOT NULL UNIQUE,
+    company_initials CHAR(5) NOT NULL,
+    company_info VARCHAR(1000),
+    PRIMARY KEY (company_id)
+);
+
+
+CREATE TABLE favourites (
+    favourites_id      SERIAL             NOT NULL,
+    stock_amount      INT             NOT NULL,
+    username_fav VARCHAR(100) NOT NULL,
+    fav_company_id INT NOT NULL,
+    FOREIGN KEY (username_fav) REFERENCES users (username) ON DELETE CASCADE,
+    FOREIGN KEY (fav_company_id) REFERENCES companies (company_id),
+    PRIMARY KEY (favourites_id)
+) 
+; 
+
+
+CREATE TABLE stocks (
+    stock_id SERIAL NOT NULL,
+    stock_value FLOAT NOT NULL,
+    stock_company_id INT NOT NULL,
+    stock_date DATE NOT NULL,
+    FOREIGN KEY (stock_company_id) REFERENCES companies(company_id) ON DELETE CASCADE,
+    PRIMARY KEY(stock_id)
+);
+
+
+INSERT INTO users (username) values ('calum');
+
+
+INSERT INTO companies values (1,'Apple', 'AAPL', 'Make expensive phones');
+INSERT INTO companies values (2,'Google', 'GGL', 'Search the internet');
+INSERT INTO companies values (3,'Snapchat', 'SNAP', 'Send pictures to friends');
+INSERT INTO companies values (4,'Yova', 'YV', 'Sustainable Impact Investing');
+INSERT INTO companies values (5,'Facebook', 'FB', 'Keep in contact with family');
+INSERT INTO companies values (6,'Nestle', 'NSTL', 'Make chocolate and coffee');
+INSERT INTO companies values (7,'McDonalds', 'MCD', 'Fairly popular burger and nugget chain');
+INSERT INTO companies values (8,'Starbucks', 'STB', 'Make expensive coffees');
+
+INSERT INTO favourites (stock_amount, username_fav, fav_company_id) values (12, 'calum', 3);
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12,1,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (2,1,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (35,1,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12,1,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (2,1,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (35,1,'2018-01-06');
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (4,2,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (15,2,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (16,2,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (43,2,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (15,2,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (16,2,'2018-01-06');
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (17,3,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (18,3,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (19,3,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (17,3,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (18,3,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (19,3,'2018-01-06');
+
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (10,4,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (11,4,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12,4,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (10,4,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (11,4,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12,4,'2018-01-06');
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (13,5,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (14,5,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (15,5,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (13,5,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (14,5,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (15,5,'2018-01-06');
+
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (7,6,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (9,6,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (8,6,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (7,6,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (9,6,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (8,6,'2018-01-06');
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (17,7,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (14,7,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12.0,7,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (17,7,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (14,7,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (12.0,7,'2018-01-06');
+
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (2.4,8,'2018-01-01');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (35.6,8,'2018-01-02');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (4.3,8,'2018-01-03');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (2.4,8,'2018-01-04');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (35.6,8,'2018-01-05');
+INSERT INTO stocks (stock_value,stock_company_id,stock_date) values (4.3,8,'2018-01-06');
